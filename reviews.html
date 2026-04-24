@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お客さまの声 | 前世鑑定士ハビト 🦔🍎</title>
+<meta name="description" content="前世鑑定士ハビトの鑑定を受けたお客さまの声をご紹介します。">
+<meta property="og:title" content="お客さまの声 | 前世鑑定士ハビト">
+<meta property="og:image" content="habiticon.png">
+<link rel="icon" href="habiticon.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --deep-night: #0a1628;
+  --night-teal: #0f2a3d;
+  --teal: #1a4a5e;
+  --teal-light: #2a7a8e;
+  --amber: #e8a840;
+  --amber-glow: #f4c76b;
+  --amber-soft: #fbe4b0;
+  --warm-white: #fef8ed;
+  --star-white: #fffdf5;
+  --text-body: #d4cfc8;
+  --text-heading: #fef3dc;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  background: var(--deep-night);
+  color: var(--text-body);
+  overflow-x: hidden;
+  line-height: 1.85;
+}
+
+/* ─── Starfield ─── */
+.starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.star {
+  position: absolute; width: 2px; height: 2px;
+  background: var(--amber-glow); border-radius: 50%;
+  animation: twinkle var(--duration) ease-in-out infinite; opacity: 0;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: var(--max-opacity); transform: scale(1); }
+}
+
+/* ─── Header ─── */
+.page-header {
+  position: relative; z-index: 2;
+  text-align: center;
+  padding: 80px 24px 60px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--amber);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+  transition: opacity 0.3s;
+}
+
+.back-link:hover { opacity: 0.7; }
+
+.back-link svg {
+  width: 14px; height: 14px;
+  stroke: var(--amber); fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+.page-header-icon {
+  width: 80px; height: 80px;
+  border-radius: 50%; object-fit: cover;
+  border: 2px solid rgba(232, 168, 64, 0.25);
+  box-shadow: 0 0 24px rgba(232, 168, 64, 0.12);
+  margin-bottom: 20px;
+}
+
+.page-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 800;
+  color: var(--text-heading);
+  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+}
+
+.page-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-body);
+  line-height: 1.8;
+}
+
+/* ─── Reviews List ─── */
+.reviews {
+  position: relative; z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+}
+
+.review-card {
+  background: linear-gradient(135deg, rgba(26, 74, 94, 0.25), rgba(15, 42, 61, 0.45));
+  border: 1px solid rgba(232, 168, 64, 0.1);
+  border-radius: 20px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.review-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 15%; right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber-glow), transparent);
+  opacity: 0.3;
+}
+
+.review-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.review-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(232, 168, 64, 0.15), rgba(196, 181, 212, 0.15));
+  border: 1px solid rgba(232, 168, 64, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.review-info {
+  flex: 1;
+}
+
+.review-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.review-tag {
+  font-size: 0.72rem;
+  color: var(--amber);
+  letter-spacing: 0.06em;
+}
+
+.review-stars {
+  font-size: 0.8rem;
+  color: var(--amber-glow);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.review-text {
+  font-size: 0.9rem;
+  line-height: 2;
+  color: var(--warm-white);
+}
+
+.review-text .highlight {
+  color: var(--amber-soft);
+  font-weight: 500;
+}
+
+/* ─── CTA bottom ─── */
+.reviews-cta {
+  text-align: center;
+  padding: 60px 24px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.reviews-cta-text {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.1rem;
+  color: var(--text-heading);
+  margin-bottom: 24px;
+  letter-spacing: 0.06em;
+}
+
+.reviews-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--amber), #d4922e);
+  color: var(--deep-night);
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 14px 36px;
+  border-radius: 60px;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 30px rgba(232, 168, 64, 0.3);
+}
+
+.reviews-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(232, 168, 64, 0.45);
+}
+
+/* ─── Footer ─── */
+footer {
+  position: relative; z-index: 2;
+  text-align: center;
+  padding: 40px 24px;
+  font-size: 0.75rem;
+  color: rgba(212, 207, 200, 0.3);
+  border-top: 1px solid rgba(232, 168, 64, 0.06);
+}
+
+footer a {
+  color: rgba(212, 207, 200, 0.4);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 207, 200, 0.15);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .review-card { padding: 24px 20px; }
+  .page-header { padding: 60px 24px 40px; }
+}
+</style>
+</head>
+<body>
+
+<div class="starfield" id="starfield"></div>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="page-header">
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    トップに戻る
+  </a><br>
+  <img src="habiticon.png" alt="ハビト" class="page-header-icon">
+  <h1 class="page-title">お客さまの声</h1>
+  <p class="page-subtitle">鑑定を受けてくださった方からの感想をご紹介します🦔🍎</p>
+</header>
+
+<!-- ═══════════ REVIEWS ═══════════ -->
+<div class="reviews">
+
+  <!-- Review 1 -->
+  <div class="review-card" data-id="review-01">
+    <div class="review-meta">
+      <div class="review-avatar">🌸</div>
+      <div class="review-info">
+        <div class="review-name">M.Kさん</div>
+        <div class="review-tag">前世鑑定</div>
+      </div>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">
+      ずっとモヤモヤしていた人間関係の悩みが、前世のつながりだったと知って<span class="highlight">すごく腑に落ちました</span>。鑑定書を読みながら涙が出てきて、心が軽くなりました。ハビトさんの言葉がとても温かくて、何度も読み返しています🍎
+    </p>
+  </div>
+
+  <!-- Review 2 -->
+  <div class="review-card" data-id="review-02">
+    <div class="review-meta">
+      <div class="review-avatar">🦋</div>
+      <div class="review-info">
+        <div class="review-name">Y.Tさん</div>
+        <div class="review-tag">前世鑑定</div>
+      </div>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">
+      自分がなぜこの仕事を選んだのか、なぜこの土地に惹かれるのか、<span class="highlight">前世を通して全部つながった</span>感覚がありました。「魂の宿題」という表現がしっくりきて、前向きに頑張ろうと思えました🦔
+    </p>
+  </div>
+
+  <!-- Review 3 -->
+  <div class="review-card" data-id="review-03">
+    <div class="review-meta">
+      <div class="review-avatar">🌙</div>
+      <div class="review-info">
+        <div class="review-name">A.Sさん</div>
+        <div class="review-tag">ペア鑑定</div>
+      </div>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">
+      夫との関係がうまくいかない時期に申し込みました。前世でも深い縁があったと知って、<span class="highlight">相手を見る目が変わりました</span>。「今世で卒業できるよ」というハビトさんの言葉に救われました。夫にも少し優しくなれた気がします。
+    </p>
+  </div>
+
+  <!-- Review 4 -->
+  <div class="review-card" data-id="review-04">
+    <div class="review-meta">
+      <div class="review-avatar">✨</div>
+      <div class="review-info">
+        <div class="review-name">R.Nさん</div>
+        <div class="review-tag">前世鑑定</div>
+      </div>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">
+      占いは初めてで少し不安でしたが、<span class="highlight">文字だけのやり取りなので気楽に受けられました</span>。PDFの鑑定書がとても丁寧で、読み物としても素敵でした。友人にもおすすめしたいです🍎
+    </p>
+  </div>
+
+  <!-- Review 5 -->
+  <div class="review-card" data-id="review-05">
+    <div class="review-meta">
+      <div class="review-avatar">🕊️</div>
+      <div class="review-info">
+        <div class="review-name">K.Hさん</div>
+        <div class="review-tag">前世鑑定</div>
+      </div>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">
+      転職するかどうか迷っていた時に鑑定をお願いしました。前世で同じような岐路に立っていたことがわかって、<span class="highlight">今度こそ自分の気持ちに素直に進もうと決心できました</span>。背中を押してもらえた感じです🦔
+    </p>
+  </div>
+
+  <!-- Review 6 -->
+  <div class="review-card" data-id="review-06">
+    <div class="review-meta">
+      <div class="review-avatar">🌿</div>
+      <div class="review-info">
+        <div class="review-name">S.Mさん</div>
+        <div class="review-tag">ペア鑑定</div>
+      </div>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">
+      母との関係で長年悩んでいました。ペア鑑定で前世の関係性を見てもらったら、<span class="highlight">お互いの魂が成長するために選んだ関係だったと知って</span>、少し許せる気持ちが芽生えました。ハビトさんの「ちくっと核心を突くけど寄り添う」感じ、本当にその通りでした。
+    </p>
+  </div>
+
+  <!-- Review 7 -->
+  <div class="review-card" data-id="review-07">
+    <div class="review-meta">
+      <div class="review-avatar">🔥</div>
+      <div class="review-info">
+        <div class="review-name">E.Oさん</div>
+        <div class="review-tag">深堀鑑定</div>
+      </div>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">
+      前世鑑定を受けた後、もっと深く知りたくなって深堀鑑定をお願いしました。<span class="highlight">3か月間の流れを細かく視てもらえて、毎月の過ごし方が明確になりました</span>。大きな決断をする時期もピンポイントで教えてもらえて、安心して動けました🍎
+    </p>
+  </div>
+
+  <!-- Review 8 -->
+  <div class="review-card" data-id="review-08">
+    <div class="review-meta">
+      <div class="review-avatar">🌟</div>
+      <div class="review-info">
+        <div class="review-name">N.Yさん</div>
+        <div class="review-tag">深堀鑑定</div>
+      </div>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">
+      重要な3か月を徹底的に視てもらえるということで申し込みました。<span class="highlight">普通の鑑定では出てこないような深い部分まで読み解いてもらえて</span>、自分でも気づいていなかった魂のクセに気づけました。鑑定書のボリュームにも驚きました🦔
+    </p>
+  </div>
+
+  <!-- Review 9 -->
+  <div class="review-card" data-id="review-09">
+    <div class="review-meta">
+      <div class="review-avatar">🪴</div>
+      <div class="review-info">
+        <div class="review-name">T.Iさん</div>
+        <div class="review-tag">分岐鑑定</div>
+      </div>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">
+      転職するか今の会社に残るか、ずっと迷っていました。分岐鑑定で<span class="highlight">それぞれの道を進んだ場合の魂の学びの違いを教えてもらえて</span>、自分がどちらを本当に望んでいるのか気づけました。背中を押してもらった感じです🦔
+    </p>
+  </div>
+
+  <!-- Review 10 -->
+  <div class="review-card" data-id="review-10">
+    <div class="review-meta">
+      <div class="review-avatar">💫</div>
+      <div class="review-info">
+        <div class="review-name">C.Wさん</div>
+        <div class="review-tag">分岐鑑定</div>
+      </div>
+    </div>
+    <div class="review-stars">★★★★★</div>
+    <p class="review-text">
+      引っ越しを迷っていて分岐鑑定をお願いしました。<span class="highlight">どちらに進んでも大丈夫、でもこっちの方が魂が喜ぶよ</span>、という伝え方がすごくハビトさんらしくて安心しました。結果的にとても良い選択ができました🍎
+    </p>
+  </div>
+
+</div>
+<div class="reviews-cta">
+  <p class="reviews-cta-text">あなたも前世の宿題、ほどいてみませんか？🦔</p>
+  <a href="https://nabit-zense.stores.jp/" target="_blank" rel="noopener" class="reviews-cta-button">
+    🍎 鑑定を申し込む
+  </a>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <p>🦔🍎 前世鑑定士ハビト &copy; 2025 ｜ <a href="index.html">トップページ</a></p>
+</footer>
+
+<script>
+// Stars
+(function() {
+  const sf = document.getElementById('starfield');
+  for (let i = 0; i < 100; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.setProperty('--duration', (3 + Math.random() * 5) + 's');
+    s.style.setProperty('--max-opacity', (0.3 + Math.random() * 0.7).toFixed(2));
+    s.style.animationDelay = (Math.random() * 6) + 's';
+    s.style.width = s.style.height = (1 + Math.random() * 2) + 'px';
+    sf.appendChild(s);
+  }
+})();
+
+// Scroll reveal
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.review-card').forEach(el => observer.observe(el));
+})();
+</script>
+</body>
+</html>
