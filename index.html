@@ -42,51 +42,6 @@ body {
   line-height: 1.85;
 }
 
-/* ─── Starfield Background ─── */
-.starfield {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: var(--amber-glow);
-  border-radius: 50%;
-  animation: twinkle var(--duration) ease-in-out infinite;
-  opacity: 0;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0; transform: scale(0.5); }
-  50% { opacity: var(--max-opacity); transform: scale(1); }
-}
-
-/* ─── Floating particles ─── */
-.particle {
-  position: fixed;
-  width: 3px;
-  height: 3px;
-  background: radial-gradient(circle, var(--amber-glow), transparent);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-  animation: floatUp var(--float-dur) linear infinite;
-  opacity: 0;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-  10% { opacity: 0.6; }
-  90% { opacity: 0.3; }
-  100% { transform: translateY(-10vh) translateX(var(--drift)); opacity: 0; }
-}
-
-/* ─── Shared Section Styles ─── */
 section {
   position: relative;
   z-index: 2;
@@ -106,7 +61,7 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 60px 24px;
+  padding: 100px 24px 60px;
   position: relative;
 }
 
@@ -126,20 +81,8 @@ section {
   border: 3px solid rgba(232, 168, 64, 0.3);
   box-shadow:
     0 0 40px rgba(232, 168, 64, 0.2),
-    0 0 80px rgba(232, 168, 64, 0.1),
-    0 0 120px rgba(232, 168, 64, 0.05);
-  animation: heroFloat 6s ease-in-out infinite, heroAppear 1.5s ease-out;
+    0 0 80px rgba(232, 168, 64, 0.1);
   margin-bottom: 32px;
-}
-
-@keyframes heroFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-@keyframes heroAppear {
-  from { opacity: 0; transform: translateY(30px) scale(0.9); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .hero-title {
@@ -148,7 +91,6 @@ section {
   font-weight: 800;
   color: var(--text-heading);
   margin-bottom: 8px;
-  animation: fadeUp 1s ease-out 0.3s both;
   letter-spacing: 0.08em;
 }
 
@@ -157,7 +99,6 @@ section {
   font-size: clamp(0.95rem, 2.5vw, 1.3rem);
   color: var(--amber);
   margin-bottom: 28px;
-  animation: fadeUp 1s ease-out 0.5s both;
   letter-spacing: 0.15em;
   font-weight: 600;
 }
@@ -167,19 +108,12 @@ section {
   color: var(--text-body);
   max-width: 500px;
   line-height: 2;
-  animation: fadeUp 1s ease-out 0.7s both;
 }
 
 .hero-emoji {
   font-size: 1.6rem;
   display: block;
   margin-bottom: 16px;
-  animation: fadeUp 1s ease-out 0.2s both;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .scroll-hint {
@@ -187,7 +121,6 @@ section {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  animation: fadeUp 1s ease-out 1.2s both;
 }
 
 .scroll-hint span {
@@ -196,13 +129,8 @@ section {
   height: 28px;
   background: linear-gradient(to bottom, var(--amber), transparent);
   margin: 0 auto;
-  animation: scrollPulse 2s ease-in-out infinite;
   border-radius: 1px;
-}
-
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-  50% { opacity: 0.8; transform: scaleY(1); }
+  opacity: 0.5;
 }
 
 /* ─── CONCEPT ─── */
@@ -250,6 +178,95 @@ section {
   margin-top: 24px;
 }
 
+/* ─── ABOUT ─── */
+.about {
+  padding: 100px 24px;
+  position: relative;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--amber), transparent);
+}
+
+.about-grid {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-heading {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: var(--text-heading);
+  margin-bottom: 40px;
+  letter-spacing: 0.06em;
+}
+
+.about-icon-small {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(232, 168, 64, 0.25);
+  box-shadow: 0 0 30px rgba(232, 168, 64, 0.15);
+  margin-bottom: 28px;
+}
+
+.about-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  margin-bottom: 4px;
+}
+
+.about-role {
+  font-size: 0.85rem;
+  color: var(--amber);
+  letter-spacing: 0.12em;
+  margin-bottom: 24px;
+}
+
+.about-desc {
+  font-size: 0.95rem;
+  line-height: 2.2;
+  color: var(--text-body);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.traits {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.trait {
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.trait-icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.trait-label {
+  font-size: 0.8rem;
+  color: var(--amber-soft);
+  letter-spacing: 0.08em;
+}
+
 /* ─── MENU / SHOP ─── */
 .menu {
   padding: 100px 24px;
@@ -295,13 +312,6 @@ section {
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(8px);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-}
-
-.menu-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(232, 168, 64, 0.15);
-  border-color: rgba(232, 168, 64, 0.3);
 }
 
 .menu-card::before {
@@ -347,11 +357,6 @@ section {
   letter-spacing: 0.06em;
   border-bottom: 1px solid rgba(232, 168, 64, 0.3);
   padding-bottom: 2px;
-  transition: border-color 0.3s;
-}
-
-.menu-card:hover .menu-card-link {
-  border-color: var(--amber);
 }
 
 .shop-all {
@@ -366,15 +371,9 @@ section {
   letter-spacing: 0.06em;
   border-bottom: 1px solid rgba(251, 228, 176, 0.3);
   padding-bottom: 3px;
-  transition: border-color 0.3s, color 0.3s;
 }
 
-.shop-all a:hover {
-  color: var(--amber);
-  border-color: var(--amber);
-}
-
-/* ─── FLOW / STEPS ─── */
+/* ─── FLOW ─── */
 .flow {
   padding: 80px 24px 40px;
 }
@@ -471,7 +470,7 @@ section {
   letter-spacing: 0.06em;
 }
 
-/* ─── REVIEW PICKUP ─── */
+/* ─── REVIEWS ─── */
 .reviews-pickup {
   padding: 80px 24px;
 }
@@ -497,14 +496,6 @@ section {
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(8px);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.pickup-card.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .pickup-card::before {
@@ -569,12 +560,6 @@ section {
   letter-spacing: 0.06em;
   border-bottom: 1px solid rgba(251, 228, 176, 0.3);
   padding-bottom: 3px;
-  transition: border-color 0.3s, color 0.3s;
-}
-
-.reviews-more a:hover {
-  color: var(--amber);
-  border-color: var(--amber);
 }
 
 /* ─── OPENCHAT ─── */
@@ -627,115 +612,7 @@ section {
   border-radius: 60px;
   text-decoration: none;
   letter-spacing: 0.04em;
-  transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 4px 20px rgba(6, 199, 85, 0.25);
-}
-
-.openchat-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(6, 199, 85, 0.35);
-}
-
-@media (max-width: 600px) {
-  .menu-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-  }
-
-  .menu-thumb {
-    width: 120px;
-    height: 120px;
-  }
-}
-
-/* ─── ABOUT ─── */
-.about {
-  padding: 100px 24px;
-  position: relative;
-}
-
-.about::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent, var(--amber), transparent);
-}
-
-.about-grid {
-  max-width: 620px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about-heading {
-  font-family: 'Shippori Mincho', serif;
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
-  color: var(--text-heading);
-  margin-bottom: 40px;
-  letter-spacing: 0.06em;
-}
-
-.about-icon-small {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(232, 168, 64, 0.25);
-  box-shadow: 0 0 30px rgba(232, 168, 64, 0.15);
-  margin-bottom: 28px;
-}
-
-.about-name {
-  font-family: 'Shippori Mincho', serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--text-heading);
-  margin-bottom: 4px;
-}
-
-.about-role {
-  font-size: 0.85rem;
-  color: var(--amber);
-  letter-spacing: 0.12em;
-  margin-bottom: 24px;
-}
-
-.about-desc {
-  font-size: 0.95rem;
-  line-height: 2.2;
-  color: var(--text-body);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-/* ─── TRAITS ─── */
-.traits {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  margin-top: 40px;
-  flex-wrap: wrap;
-}
-
-.trait {
-  text-align: center;
-  flex: 0 0 auto;
-}
-
-.trait-icon {
-  font-size: 1.8rem;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.trait-label {
-  font-size: 0.8rem;
-  color: var(--amber-soft);
-  letter-spacing: 0.08em;
 }
 
 /* ─── CTA ─── */
@@ -772,13 +649,7 @@ section {
   border-radius: 60px;
   text-decoration: none;
   letter-spacing: 0.06em;
-  transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 4px 30px rgba(232, 168, 64, 0.3);
-}
-
-.cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 40px rgba(232, 168, 64, 0.45);
 }
 
 .cta-note {
@@ -798,7 +669,7 @@ footer {
   border-top: 1px solid rgba(232, 168, 64, 0.06);
 }
 
-/* ─── SECTION DIVIDER ─── */
+/* ─── DIVIDER ─── */
 .divider {
   display: flex;
   align-items: center;
@@ -821,23 +692,7 @@ footer {
   opacity: 0.6;
 }
 
-/* ─── Responsive ─── */
-@media (max-width: 600px) {
-  .hero-icon {
-    width: 160px;
-    height: 160px;
-  }
-
-  .message-card {
-    padding: 24px 20px;
-  }
-
-  .traits {
-    gap: 24px;
-  }
-}
-
-/* ─── FIXED NAV ─── */
+/* ─── NAV ─── */
 .site-nav {
   position: fixed;
   top: 0;
@@ -853,7 +708,6 @@ footer {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(232, 168, 64, 0.06);
-  transition: background 0.3s;
 }
 
 .site-nav.scrolled {
@@ -867,13 +721,7 @@ footer {
   text-decoration: none;
   letter-spacing: 0.06em;
   opacity: 0.75;
-  transition: opacity 0.3s, color 0.3s;
   white-space: nowrap;
-}
-
-.site-nav a:hover {
-  opacity: 1;
-  color: var(--amber);
 }
 
 .nav-dot {
@@ -884,12 +732,23 @@ footer {
   flex-shrink: 0;
 }
 
-/* offset hero for fixed nav */
-.hero {
-  padding-top: 100px;
-}
-
-@media (max-width: 400px) {
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .hero-icon {
+    width: 160px;
+    height: 160px;
+  }
+  .menu-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+  .menu-thumb {
+    width: 120px;
+    height: 120px;
+  }
+  .traits {
+    gap: 24px;
+  }
   .site-nav {
     gap: 14px;
     padding: 12px 14px;
@@ -898,38 +757,18 @@ footer {
     font-size: 0.72rem;
   }
 }
-
-/* ─── Scroll animations ─── */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
 </style>
 </head>
 <body>
 
-<!-- Starfield -->
-<div class="starfield" id="starfield"></div>
-
-<!-- Floating particles -->
-<div id="particles"></div>
-
-<!-- ═══════════ NAV ═══════════ -->
 <nav class="site-nav" id="siteNav">
   <a href="#menu-section">🔮 鑑定メニュー</a>
   <span class="nav-dot"></span>
-  <a href="#openchat-section" >💬 ミニ鑑定部屋</a>
+  <a href="#openchat-section">💬 ミニ鑑定部屋</a>
   <span class="nav-dot"></span>
   <a href="https://nabit-zense.stores.jp/" target="_blank" rel="noopener">🦔 ショップ</a>
 </nav>
 
-<!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
   <div class="hero-emoji">🦔🍎</div>
   <img src="assets/habiticon.png" alt="前世鑑定士ハビト" class="hero-icon">
@@ -943,13 +782,12 @@ footer {
   <div class="scroll-hint"><span></span></div>
 </section>
 
-<!-- ═══════════ CONCEPT ═══════════ -->
 <section class="concept">
   <div class="section-inner">
-    <h2 class="concept-heading fade-in">
+    <h2 class="concept-heading">
       あなたの<em>前世</em>、<br>ちょっとだけ視えたよ。
     </h2>
-    <div class="concept-body fade-in">
+    <div class="concept-body">
       <p>
         今世でなぜか繰り返してしまうパターン。<br>
         なぜか惹かれる場所、苦手な人。<br>
@@ -969,9 +807,8 @@ footer {
 
 <div class="divider"><span>🍎</span></div>
 
-<!-- ═══════════ ABOUT ═══════════ -->
 <section class="about">
-  <div class="about-grid fade-in">
+  <div class="about-grid">
     <h2 class="about-heading">ハビトについて</h2>
     <img src="assets/habiticon.png" alt="ハビト" class="about-icon-small">
     <div class="about-name">ハビト</div>
@@ -983,7 +820,6 @@ footer {
       あなたの前世の物語を読み解いて、<br>
       カルマをほどきながら、未来へ進む道を照らします。
     </p>
-
     <div class="traits">
       <div class="trait">
         <span class="trait-icon">🔮</span>
@@ -1003,18 +839,17 @@ footer {
 
 <div class="divider"><span>🔮</span></div>
 
-<!-- ═══════════ MENU / SHOP ═══════════ -->
 <section class="menu" id="menu-section">
   <div class="section-inner">
-    <h2 class="menu-heading fade-in">鑑定メニュー</h2>
+    <h2 class="menu-heading">鑑定メニュー</h2>
     <div class="menu-grid">
-      <a href="https://nabit-zense.stores.jp/items/69480d319b4c19fa8bf2a38c" target="_blank" rel="noopener" class="menu-card fade-in">
+      <a href="https://nabit-zense.stores.jp/items/69480d319b4c19fa8bf2a38c" target="_blank" rel="noopener" class="menu-card">
         <img src="assets/exact.png" alt="前世鑑定" class="menu-thumb">
         <div class="menu-card-title">前世鑑定</div>
         <div class="menu-card-desc">前世のカルマをほどきながら、<br>未来へ向かうヒントをお届けします</div>
         <span class="menu-card-link">詳しく見る →</span>
       </a>
-      <a href="https://nabit-zense.stores.jp/items/69cf2aab5d272d1036254621" target="_blank" rel="noopener" class="menu-card fade-in">
+      <a href="https://nabit-zense.stores.jp/items/69cf2aab5d272d1036254621" target="_blank" rel="noopener" class="menu-card">
         <img src="assets/pair.png" alt="ペア鑑定" class="menu-thumb">
         <div class="menu-card-title">ペア鑑定</div>
         <div class="menu-card-desc">ふたりの前世の関わりを視て、<br>今世の関係をひもときます</div>
@@ -1027,11 +862,10 @@ footer {
   </div>
 </section>
 
-<!-- ═══════════ FLOW ═══════════ -->
 <section class="flow">
   <div class="section-inner">
-    <h2 class="flow-heading fade-in">鑑定の流れ</h2>
-    <div class="flow-steps fade-in">
+    <h2 class="flow-heading">鑑定の流れ</h2>
+    <div class="flow-steps">
       <div class="flow-step">
         <div class="flow-num">1</div>
         <div class="flow-content">
@@ -1075,10 +909,9 @@ footer {
 
 <div class="divider"><span>✨</span></div>
 
-<!-- ═══════════ REVIEWS PICKUP ═══════════ -->
 <section class="reviews-pickup">
   <div class="section-inner">
-    <h2 class="reviews-pickup-heading fade-in">お客さまの声</h2>
+    <h2 class="reviews-pickup-heading">お客さまの声</h2>
 
     <div class="pickup-card">
       <div class="pickup-meta">
@@ -1131,7 +964,8 @@ footer {
 </section>
 
 <div class="divider"><span>🦔</span></div>
-<section class="openchat fade-in" id="openchat-section">
+
+<section class="openchat" id="openchat-section">
   <div class="openchat-card">
     <span class="openchat-emoji">🦔🍎</span>
     <div class="openchat-title">ハビトのミニ鑑定部屋</div>
@@ -1148,8 +982,7 @@ footer {
 
 <div class="divider"><span>🦔</span></div>
 
-<!-- ═══════════ CTA ═══════════ -->
-<section class="cta fade-in">
+<section class="cta">
   <h2 class="cta-heading">前世の宿題、一緒にほどいてみない？</h2>
   <p class="cta-sub">
     Threadsでハビトのメッセージを受け取れます🦔🍎
@@ -1160,65 +993,18 @@ footer {
   <p class="cta-note">@habit_zense</p>
 </section>
 
-<!-- ═══════════ FOOTER ═══════════ -->
 <footer>
   <p>🦔🍎 前世鑑定士ハビト &copy; 2025</p>
 </footer>
 
 <script>
-// ─── Generate Stars ───
-(function() {
-  const sf = document.getElementById('starfield');
-  const count = 120;
-  for (let i = 0; i < count; i++) {
-    const star = document.createElement('div');
-    star.className = 'star';
-    star.style.left = Math.random() * 100 + '%';
-    star.style.top = Math.random() * 100 + '%';
-    star.style.setProperty('--duration', (3 + Math.random() * 5) + 's');
-    star.style.setProperty('--max-opacity', (0.3 + Math.random() * 0.7).toFixed(2));
-    star.style.animationDelay = (Math.random() * 6) + 's';
-    star.style.width = star.style.height = (1 + Math.random() * 2) + 'px';
-    sf.appendChild(star);
-  }
-})();
-
-// ─── Floating Particles ───
-(function() {
-  const pc = document.getElementById('particles');
-  for (let i = 0; i < 15; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.setProperty('--float-dur', (10 + Math.random() * 15) + 's');
-    p.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
-    p.style.animationDelay = (Math.random() * 15) + 's';
-    p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
-    pc.appendChild(p);
-  }
-})();
-
-// ─── Scroll reveal ───
-(function() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.fade-in, .pickup-card').forEach(el => observer.observe(el));
-})();
-
-// ─── Nav scroll effect ───
+// Nav scroll effect only
 (function() {
   const nav = document.getElementById('siteNav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  // Offset smooth scroll for fixed nav
   document.querySelectorAll('.site-nav a[href^="#"]').forEach(a => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
